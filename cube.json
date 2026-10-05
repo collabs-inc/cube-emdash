@@ -1,0 +1,9 @@
+{
+  "name": "Emdash",
+  "description": "Parallel coding agents, worktrees and review in the upstream Linux desktop, streamed inside Cube.",
+  "upstream": "https://github.com/generalaction/emdash",
+  "icon": "apps/emdash-desktop/src/assets/images/emdash/icon-light.png",
+  "platforms": ["linux"],
+  "install": "sh cube/install.sh",
+  "start": "node cube/start.mjs"
+}

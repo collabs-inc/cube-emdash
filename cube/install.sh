@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 umask 077
+sh "$(dirname "$0")/desktop/install.sh"
 version=1.2.7
 case "$(uname -s)-$(uname -m)" in
   Linux-x86_64) target=linux-x64; asset=emdash-amd64.deb; digest=712cccf29417df64f7835195f58c01dec9c76459aebf75721cc4a1a24b0e6e18 ;;
@@ -10,6 +11,7 @@ esac
 cache="${XDG_CACHE_HOME:-$HOME/.cache}/cube-emdash"
 runtime="$cache/$version-$target"
 if [ -x "$runtime/opt/Emdash/Emdash" ] && [ -f "$runtime/.cube-sha256" ] && [ "$(cat "$runtime/.cube-sha256")" = "$digest" ]; then
+  rm -f "$runtime/opt/Emdash/resources/app-update.yml"
   echo "Emdash $version is installed."
   exit 0
 fi
@@ -24,6 +26,7 @@ actual=$(sha256sum "$stage/runtime.deb" | cut -d ' ' -f 1)
 [ "$actual" = "$digest" ] || { echo 'Emdash archive checksum mismatch.' >&2; exit 1; }
 mkdir "$stage/runtime"
 dpkg-deb --extract "$stage/runtime.deb" "$stage/runtime"
+rm -f "$stage/runtime/opt/Emdash/resources/app-update.yml"
 [ -x "$stage/runtime/opt/Emdash/Emdash" ] || { echo 'Upstream Emdash executable was not found.' >&2; exit 1; }
 printf '%s\n' "$digest" > "$stage/runtime/.cube-sha256"
 rm -rf "$runtime"
