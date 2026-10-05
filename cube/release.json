@@ -1,0 +1,19 @@
+{
+  "repository": "generalaction/emdash",
+  "tag": "v1.2.7",
+  "revision": "f37a360069ffac8de8daff01da91aa32ead6fdc8",
+  "license": "Apache-2.0",
+  "executable": "opt/Emdash/Emdash",
+  "assets": {
+    "linux-x64": {
+      "name": "emdash-amd64.deb",
+      "sha256": "712cccf29417df64f7835195f58c01dec9c76459aebf75721cc4a1a24b0e6e18",
+      "size": 182289940
+    },
+    "linux-arm64": {
+      "name": "emdash-arm64.deb",
+      "sha256": "5558558899c82fd2214bf4d29fba45e63aa894122bbab79c1514c94a24d61f40",
+      "size": 170632512
+    }
+  }
+}
